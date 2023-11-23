@@ -31,43 +31,43 @@ class _HomeScreenState extends State<HomeScreen> {
               builder: (context) => StatefulBuilder(
                     builder: (context, insetState) {
                       return Container(
-                        child: SingleChildScrollView(
-                          child: Column(
-                            children: [
-                              TextFormField(
-                                decoration: InputDecoration(
-                                    border: OutlineInputBorder()),
-                              ),
-                              ListView.builder(
-                                itemCount: 2,
-                                itemBuilder: (context, index) => InkWell(
-                                  onTap: () {
-                                    selectedIndex = index;
-                                    selecteddataList.add(selectedIndex);
-                                    print(selecteddataList);
-                                    insetState(() {});
-                                    setState(() {});
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          color: mycolorList[index],
-                                          border: selectedIndex == index
-                                              ? Border.all(
-                                                  color: mycolorList[index],
-                                                  width: 5)
-                                              : null),
-                                      height: 50,
-                                      width: 50,
-                                    ),
+                        child: Column(
+                          children: [
+                            TextFormField(
+                              decoration:
+                                  InputDecoration(border: OutlineInputBorder()),
+                            ),
+                            ListView.builder(
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              itemCount: 2,
+                              itemBuilder: (context, index) => InkWell(
+                                onTap: () {
+                                  selectedIndex = index;
+                                  selecteddataList.add(selectedIndex);
+                                  print(selecteddataList);
+                                  insetState(() {});
+                                  setState(() {});
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: mycolorList[index],
+                                        border: selectedIndex == index
+                                            ? Border.all(
+                                                color: mycolorList[index],
+                                                width: 5)
+                                            : null),
+                                    height: 50,
+                                    width: 50,
                                   ),
                                 ),
                               ),
-                              ElevatedButton(
-                                  onPressed: () {}, child: Text("Save")),
-                            ],
-                          ),
+                            ),
+                            ElevatedButton(
+                                onPressed: () {}, child: Text("Save")),
+                          ],
                         ),
                       );
                     },
@@ -109,17 +109,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     ))),
           ),
           SliverToBoxAdapter(
-            child: SingleChildScrollView(
-              child: Container(
-                height: 1000,
-                child: ListView.builder(
-                    itemCount: selecteddataList.length,
-                    itemBuilder: (context, index) => Container(
-                          height: 50,
-                          width: 100,
-                          color: mycolorList[selecteddataList[index]],
-                        )),
-              ),
+            child: Container(
+              height: 1000,
+              child: ListView.builder(
+                  itemCount: selecteddataList.length,
+                  itemBuilder: (context, index) => Container(
+                        height: 50,
+                        width: 100,
+                        color: mycolorList[selecteddataList[index]],
+                      )),
             ),
           )
         ],
